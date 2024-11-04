@@ -1,0 +1,143 @@
+Overview of Snake Game Code
+--------------------------
+
+Objective: Implement a simple Snake game.
+
+Language: C++
+
+Game Components: Snake movement, food generation, collision detection, score tracking.
+
+Modules Discussed: Implementation, Algorithms, Data Structures, and Design Choices.
+
+
+
+Code Implementation & Working
+-----------------------------
+
+1. Initialization
+
+- SnakeGame class contains all game-related logic.
+
+- The borderline array stores the game grid state.
+
+- The snake array holds snake segments’ positions.
+
+- food stores the food’s position.
+
+- Initializes game state: snake length, initial score, and food placement.
+
+
+2. Key Functions
+
+- placeFood(): Places food at a random empty position on the grid.
+
+- moveSnake(): Updates the snake’s head position based on direction; checks for food or collision.
+
+- findSnake(): Verifies if a specific position is occupied by the snake’s body (for self-collision).
+
+- display(): Draws the current state of the game grid and displays the score.
+
+- run(): Main game loop that handles direction input, movement, display updates, and game speed control.
+
+
+
+Algorithmic Design
+------------------
+
+1. Snake Movement Algorithm
+
+- Direction Control: Based on user input (w, a, s, d for UP, LEFT, DOWN, RIGHT).
+
+- Head Update: Moves the snake’s head to a new position according to direction.
+
+- Body Movement: Shifts each body segment to the previous segment’s position.
+
+- Collision Detection: Checks if the snake collides with itself or grid boundaries.
+
+
+2. Food Placement Algorithm
+
+- Random Placement: Selects random coordinates for food within grid bounds.
+
+- Collision Avoidance: Ensures food does not spawn on the snake by checking borderline.
+
+
+3. Game Over Condition
+
+If the snake’s head touches the grid boundaries or any part of its own body, the game ends.
+
+
+
+Data Structures and Their Use
+-----------------------------
+
+1. 2D Array (borderline[HEIGHT][WIDTH])
+
+- Purpose: Holds grid elements, indicating empty spaces, food, or snake body.
+
+- Grid Representation: Supports easy boundary detection and food placement.
+
+
+2. Pair Array (snake[MAX_SNAKE_LENGTH])
+
+- Purpose: Tracks the position of each snake segment.
+
+- Data Structure Choice: Efficiently handles snake segment positions and allows linear updates when the snake moves.
+
+
+3. Enumerated Direction (enum Direction)
+
+- Purpose: Manages the four possible directions (UP, DOWN, LEFT, RIGHT) with an additional STOP state.
+
+- Usage: Simplifies direction control and prevents reverse movement.
+
+
+
+Justifications for Data and Algorithm Choices
+---------------------------------------------
+
+1. 2D Array vs. Other Structures (e.g., Linked List)
+
+- Reason for Choice: Simple, direct access to each grid cell for detecting collisions and food placement.
+
+- Benefit: Minimal memory overhead, easy boundary checking, and fast updates.
+
+
+2. Array-based Snake Representation
+
+- Why Array: Fixed size and direct access to positions; avoids overhead of dynamically allocating nodes.
+
+- Drawback: Limited snake length, but suitable for simple games.
+
+- Alternative: A linked list could manage dynamic growth but is more complex.
+
+
+3. Food Placement
+
+- Random Selection within Bounds: Ensures efficient food spawning without interfering with snake positions.
+
+- Alternative Considered: Tracking all empty cells, but it would be less efficient in memory usage.
+
+
+4. Input Handling
+
+- Non-blocking Input (_kbhit() and _getch()): Allows smooth, real-time user input.
+
+- Game Speed Control: Managed using Sleep(100) to control loop timing.
+
+
+
+Key Takeaways
+-------------
+
+1. Simplified Game Loop & Logic
+
+Uses basic loops, conditional checks, and simple data structures for efficient game logic.
+
+
+2. Benefits of Algorithm Choices
+
+- Fixed-size Arrays: Efficiently manages memory and performance for a grid-based game.
+
+- Direction Control with Enumeration: Provides clarity and prevents invalid moves (like reversing direction).
+
